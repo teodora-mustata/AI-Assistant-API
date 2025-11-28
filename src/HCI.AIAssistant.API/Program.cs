@@ -7,15 +7,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: "CORS",
-    policy =>
-    {
-        policy
-        .AllowAnyHeader()
-        .AllowAnyMethod()
-        .AllowAnyOrigin();
-    });
+    options.AddPolicy("CORS",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
 });
+
 
 // Replace appsettings.json values with Key Vault values
 var keyVaultName = builder.Configuration
